@@ -3,6 +3,7 @@
   "singleQuote": false,
   "arrowParens": "avoid",
   "trailingComma": "none",
+  "endOfLine": "auto",
   "overrides": [
     {
       "files": "*.html",
