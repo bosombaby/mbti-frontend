@@ -1,17 +1,13 @@
-<script setup lang="ts">
-import { useDarkMode, useToggleDarkMode } from "@/hooks/useToggleDarkMode";
-
-const onClickRight = () => {
-  useToggleDarkMode();
-};
-</script>
-
 <template>
-  <van-nav-bar fixed placeholder @click-right="onClickRight">
+  <van-nav-bar
+    fixed
+    placeholder
+    left-arrow
+    title="MBTI 畅玩日"
+    left-text="返回"
+  >
     <template #right>
-      <svg-icon class="text-[18px]" :name="useDarkMode() ? 'light' : 'dark'" />
+      <van-icon size="18px" name="success" />
     </template>
   </van-nav-bar>
 </template>
-
-<style scoped></style>
