@@ -14,7 +14,8 @@ const routes: Array<RouteRecordRaw> = [
         name: "Home",
         component: Home,
         meta: {
-          title: "畅玩日"
+          title: "畅玩日",
+          noCache: true
         }
       },
       {

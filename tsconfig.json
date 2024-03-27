@@ -17,22 +17,12 @@
     "baseUrl": ".",
     "allowJs": false,
     "resolveJsonModule": true,
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
+    "lib": ["ESNext", "DOM"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@build/*": [
-        "build/*"
-      ]
+      "@/*": ["src/*"],
+      "@build/*": ["build/*"]
     },
-    "types": [
-      "node",
-      "vite/client"
-    ]
+    "types": ["node", "vite/client"]
   },
   "include": [
     "mock/*.ts",
@@ -40,11 +30,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "typings/*.d.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "src/hooks/useSeamlessScroll.js"
   ],
-  "exclude": [
-    "dist",
-    "**/*.js",
-    "node_modules"
-  ]
+  "exclude": ["dist", "**/*.js", "node_modules"]
 }

@@ -32,5 +32,11 @@ const cachedViews = computed(() => {
   position: relative;
   height: 100%;
   width: 100%;
+  background-image: url("@/assets/imgs/背景.png");
+  background-size: 100% 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /*关键*/
+  background-position: top;
 }
 </style>
