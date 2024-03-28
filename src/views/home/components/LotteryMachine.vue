@@ -13,7 +13,7 @@
       </div>
       <div class="click-btn" @click="startLottery"></div>
       <div class="activity-rule"></div>
-      <van-popup
+      <!-- <van-popup
         v-model:show="isShowActivityRule"
         closeable
         close-icon="close"
@@ -21,7 +21,13 @@
         :style="{ height: '30%' }"
         ><div class="header"></div>
         <div class="content"></div>
-      </van-popup>
+      </van-popup> -->
+      <van-dialog v-model:show="isShowDiscount">
+        <img
+          src="@/assets/imgs/券弹窗.png"
+          style="width: 100%; height: 250px; object-fit: cover"
+        />
+      </van-dialog>
     </div>
   </div>
 </template>
@@ -34,6 +40,7 @@ import ScrollCard from '@/components/SrcollCard/index.vue'
 const remainCount = ref(3)
 const isStartLottery = ref(false)
 const isShowActivityRule = ref(true)
+const isShowDiscount = ref(false)
 
 const scrollList = ref([
   { delay: 0, result: 0 },
@@ -76,7 +83,8 @@ let endLottery = () => {
   timer = setTimeout(() => {
     isStartLottery.value = false
     remainCount.value -= 1
-    showToast(discountInfo.value)
+    isShowDiscount.value = true
+    // showToast(discountInfo.value)
   }, 5000)
 }
 
@@ -85,15 +93,16 @@ let startLottery = async () => {
   const res = await getLottery({ memberId: '111111111' })
 
   const nums = res.randoms
-  if (res.free) {
-    discountInfo.value = '恭喜您，抽中超级大奖!'
-  } else if (res.discount == 0.89) {
-    discountInfo.value = '恭喜您，抽中89折优惠券!'
-  } else if (res.discount == 0.69) {
-    discountInfo.value = '恭喜您，抽中69折优惠券!'
-  } else if (res.discount == 0.49) {
-    discountInfo.value = '恭喜您，抽中49折优惠券!'
-  }
+  // if (res.free) {
+  //   discountInfo.value = '恭喜您，抽中超级大奖!'
+  // } else if (res.discount == 0.89) {
+  //   discountInfo.value = '恭喜您，抽中89折优惠券!'
+  // } else if (res.discount == 0.69) {
+  //   discountInfo.value = '恭喜您，抽中69折优惠券!'
+  // } else if (res.discount == 0.49) {
+  //   discountInfo.value = '恭喜您，抽中49折优惠券!'
+  // }
+
   isStartLottery.value = true
   scrollList.value.forEach((item, index) => {
     item.result = nums[index]

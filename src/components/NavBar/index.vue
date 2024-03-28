@@ -7,7 +7,7 @@
     left-text="返回"
   >
     <template #right>
-      <van-icon size="18px" name="success" />
+      <van-icon size="18px" name="share-o" />
     </template>
   </van-nav-bar>
 </template>

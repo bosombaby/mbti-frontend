@@ -1,15 +1,10 @@
 <template>
   <div class="home">
     <LotteryMachine />
-    <van-dialog v-model:show="show" title="标题">
-      <img src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg" />
-    </van-dialog>
   </div>
 </template>
 
 <script setup lang="ts" name="Home">
-import { ref } from 'vue'
-const show = ref(true)
 import LotteryMachine from './components/LotteryMachine.vue'
 </script>
 
