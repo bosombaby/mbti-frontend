@@ -13,6 +13,7 @@ import LotteryMachine from './components/LotteryMachine.vue'
   position: relative;
   width: 100%;
   height: 1200px;
-  background: url('@/assets/imgs/主页画板.png') no-repeat scroll top / contain;
+  background: #dbf5c8 url('@/assets/imgs/主页画板.png') no-repeat scroll top /
+    contain;
 }
 </style>

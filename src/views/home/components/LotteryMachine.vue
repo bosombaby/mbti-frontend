@@ -12,22 +12,22 @@
         />
       </div>
       <div class="click-btn" @click="startLottery"></div>
-      <div class="activity-rule"></div>
-      <!-- <van-popup
-        v-model:show="isShowActivityRule"
-        closeable
-        close-icon="close"
-        position="bottom"
-        :style="{ height: '30%' }"
-        ><div class="header"></div>
-        <div class="content"></div>
-      </van-popup> -->
-      <van-dialog v-model:show="isShowDiscount">
+
+      <!-- 活动规则 -->
+      <div class="activity-rule" @click="isShowActivityRule = true"></div>
+      <ActivityRule />
+
+      <!-- 优惠券弹窗 -->
+      <van-popup
+        v-model:show="isShowDiscount"
+        round
+        :style="{ width: '85%', height: '250px' }"
+      >
         <img
           src="@/assets/imgs/券弹窗.png"
-          style="width: 100%; height: 250px; object-fit: cover"
+          style="width: 100%; height: 100%; object-fit: cover"
         />
-      </van-dialog>
+      </van-popup>
     </div>
   </div>
 </template>
@@ -35,11 +35,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { showToast } from 'vant'
+import { storeToRefs } from 'pinia'
 import { getLottery } from '@/api/deploy/index'
+import { useLotteryStore } from '@/store/modules/lotteryStore'
 import ScrollCard from '@/components/SrcollCard/index.vue'
+import ActivityRule from '@/components/ActivityRule/index.vue'
+
+const lotteryStore = useLotteryStore()
+const { isShowActivityRule } = storeToRefs(lotteryStore)
+
 const remainCount = ref(3)
 const isStartLottery = ref(false)
-const isShowActivityRule = ref(true)
 const isShowDiscount = ref(false)
 
 const scrollList = ref([
@@ -154,8 +160,9 @@ let startLottery = async () => {
 
 .activity-rule {
   position: absolute;
-  max-width: 20px;
-  top: 4rem;
+  width: 15px;
+  height: 41px;
+  top: 122px;
   right: 0;
   text-decoration: none;
 }
