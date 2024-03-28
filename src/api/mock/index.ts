@@ -21,3 +21,11 @@ export function getListApiError(data?: object): Promise<ListResult> {
     data
   });
 }
+
+export function getLottery(data) {
+  return http.request({
+    url: "/order/lottery",
+    method: "post",
+    data
+  });
+}

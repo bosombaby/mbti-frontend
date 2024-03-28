@@ -1,9 +1,10 @@
 {
   "bracketSpacing": true,
-  "singleQuote": false,
+  "singleQuote": true,
   "arrowParens": "avoid",
   "trailingComma": "none",
   "endOfLine": "auto",
+  "semi": false,
   "overrides": [
     {
       "files": "*.html",

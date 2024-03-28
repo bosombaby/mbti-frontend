@@ -3,9 +3,9 @@
     <ul
       class="scroll-box"
       ref="scrollRef"
-      :class="{ 'scroll-box-move': props.isStartLottery }"
+      :class="{ 'scroll-box-move': isShowAnimate }"
     >
-      <li v-for="(item, index) in scrollList" :key="index">
+      <li v-for="(item, index) in lotteryList" :key="index">
         <img :src="item.src" alt="" />
       </li>
     </ul>
@@ -13,8 +13,9 @@
 </template>
 
 <script setup>
-import { ref, defineProps, onUpdated } from "vue";
-import { scrollListConfig } from "@/config/LotteryConfig";
+import { ref, defineProps, watch } from 'vue'
+import useScrollList from '@/hooks/useScrollList'
+const { lotteryList, setLotteryList, reverseLotteryList } = useScrollList()
 const props = defineProps({
   delay: {
     type: Number,
@@ -24,38 +25,47 @@ const props = defineProps({
   isStartLottery: {
     type: Boolean,
     default: true
+  },
+  result: {
+    type: Number,
+    require: true,
+    default: 0
   }
-});
+})
 
-const delay = ref(props.delay + "s");
-const isShowAnimate = ref(props.isStartLottery);
-const scrollRef = ref(null);
-
-const prizeResult = scrollListConfig[4];
-const scrollList = ref([...scrollListConfig, prizeResult]);
+const delay = ref(props.delay + 's')
+const isShowAnimate = ref(props.isStartLottery)
+const scrollRef = ref(null)
 
 // 监听动画是否停止
 let monitorAnimate = () => {
-  // 将最后一个变为第一个
-  scrollList.value = [prizeResult, ...scrollListConfig];
-  isShowAnimate.value = false;
-};
+  isShowAnimate.value = false
+  reverseLotteryList()
+}
 
-onUpdated(() => {
-  console.log("开始更新", props);
-});
+watch(
+  () => props.isStartLottery,
+  newVlaue => {
+    if (newVlaue) {
+      isShowAnimate.value = true
+      setLotteryList(props.result)
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <style scoped>
 .role-display {
-  width: 44px;
-  height: 73px;
-  /* overflow: hidden; */
+  width: 53px;
+  height: 75px;
+  overflow: hidden;
 }
 
 .scroll-box {
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 10px;
   position: relative;
 }
@@ -70,12 +80,12 @@ onUpdated(() => {
   }
 
   100% {
-    transform: translateY(calc(-100% + 73px));
+    transform: translateY(calc(-100% + 75px));
   }
 }
 .scroll-box li {
   width: 44px;
-  height: 73px;
+  height: 75px;
 }
 .scroll-box li img {
   width: 100%;
