@@ -80,7 +80,7 @@ watch(
   }
 
   100% {
-    transform: translateY(calc(-100% + 75px));
+    transform: translateY(calc(-100% + 82.5px));
   }
 }
 .scroll-box li {
